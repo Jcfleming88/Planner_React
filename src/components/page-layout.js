@@ -12,7 +12,7 @@ export const PageLayout = ({ children }) => {
   return (
     <div className="page-layout">
       <Header handleToggle={handleMenuToggle} />
-      <Menu isOpen={isOpen} />
+      <Menu handleToggle={handleMenuToggle} isOpen={isOpen} />
       <div className="main">
         {children}
       </div>

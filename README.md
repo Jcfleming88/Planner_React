@@ -1,6 +1,8 @@
-# React/JavaScript: Starter SPA Code Sample
+# Template App
 
-This JavaScript code sample demonstrates how to build a Single-Page Application (SPA) using React. This React code sample builds the API server using the React Router 6 library.
+This app was created based on the Starter SPA code from the Auth0 starter example. The code has been modified and updated to work better and automated some functions such as adding new pages to the router system and menu as required. It also keeps some of the example code from the Auth0 example.
+
+## Auth0 example pages
 
 Visit the ["React/JavaScript Code Samples: SPA Security in Action"](https://developer.auth0.com/resources/code-samples/spa/react) section of the ["Auth0 Developer Resources"](https://developer.auth0.com/resources) to explore how you can secure React applications written in JavaScript by implementing endpoint protection and authorization with Auth0.
 
