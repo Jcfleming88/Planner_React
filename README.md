@@ -2,6 +2,8 @@
 
 This app was created based on the Starter SPA code from the Auth0 starter example. The code has been modified and updated to work better and automated some functions such as adding new pages to the router system and menu as required. It also keeps some of the example code from the Auth0 example.
 
+["Figma Page for the App"](https://www.figma.com/design/6fQjj0ZorKt0qe0Us8RIcU/Pages?node-id=0-1&t=E62TO8n5JYMXvOZe-1)
+
 ## Auth0 example pages
 
 Visit the ["React/JavaScript Code Samples: SPA Security in Action"](https://developer.auth0.com/resources/code-samples/spa/react) section of the ["Auth0 Developer Resources"](https://developer.auth0.com/resources) to explore how you can secure React applications written in JavaScript by implementing endpoint protection and authorization with Auth0.

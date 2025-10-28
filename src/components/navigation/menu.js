@@ -30,13 +30,21 @@ export const Menu = ({handleToggle, isOpen}) => {
                 })}
             </div>
             <div className="menu-settings">
-                <button className="button-nav">
-                    <img className="icon" src={settings} alt={`Setting icon`} />
-                    <div className="label">
-                        Settings
-                    </div>
-                </button>
-                <button className="button-nav" onClick={() => handleToggle()}> 
+                {() => {
+                    if (isAuthenticated) {
+                        return (
+                            <button className="button-nav">
+                                <img className="icon" src={settings} alt={`Setting icon`} onClick={() => navigate('/settings')} />
+                                <div className="label">
+                                    Settings
+                                </div>
+                            </button>
+                        )
+                    } else {
+                        return null;
+                    }
+                }}
+                <button className="button-nav" alt={'Open or close nav panel'} onClick={() => handleToggle()}> 
                     <img className="icon" src={arrow} alt={`Arrow icon`} />
                     <div className="label">
                         Close

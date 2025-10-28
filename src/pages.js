@@ -4,12 +4,16 @@ import { AuthenticationGuard } from "./components/authentication-guard";
 import { CallbackPage } from "./pages/callback-page";
 import { HomePage } from "./pages/home-page";
 import { NotFoundPage } from "./pages/not-found-page";
-import { ProtectedPage } from "./pages/protected-page";
-import { PublicPage } from "./pages/public-page";
+import { TaskListPage } from "./pages/task-list";
+import { EisenhowerMatrixPage } from "./pages/eisenhower-matrix";
+import { KanbanPage } from "./pages/kanban";
+import { SettingsPage } from "./pages/settings";
 
 import home from "./images/icons/home.png";
-import publicIcon from "./images/icons/unlocked.png";
-import protectedIcon from "./images/icons/locked.png";
+import list from "./images/icons/bulletList.png";
+import matrix from "./images/icons/grid.png";
+import kanban from "./images/icons/kanban.png";
+import settings from "./images/icons/settings.png";
 
 export const pages = [
     {
@@ -21,20 +25,36 @@ export const pages = [
         icon: home
     },
     {
-        path: "/public",
-        element: <PublicPage />,
-        title: "Public",
-        isOnMenu: true,
-        isProtected: false,
-        icon: publicIcon
-    },
-    {
-        path: "/protected",
-        element: <AuthenticationGuard component={ProtectedPage} />,
-        title: "Protected",
+        path: "/tasks",
+        element: <AuthenticationGuard component={TaskListPage} />,
+        title: "Tasks",
         isOnMenu: true,
         isProtected: true,
-        icon: protectedIcon
+        icon: list
+    },
+    {
+        path: "/eisenhower",
+        element: <AuthenticationGuard component={EisenhowerMatrixPage} />,
+        title: "Eisenhower Matrix",
+        isOnMenu: true,
+        isProtected: true,
+        icon: matrix
+    },
+    {
+        path: "/kanban",
+        element: <AuthenticationGuard component={KanbanPage} />,
+        title: "Kanban Board",
+        isOnMenu: true,
+        isProtected: true,
+        icon: kanban
+    },
+    {
+        path: "/settings",
+        element: <AuthenticationGuard component={SettingsPage} />,
+        title: "Settings",
+        isOnMenu: false,
+        isProtected: true,
+        icon: settings
     },
     {
         path: "/callback",

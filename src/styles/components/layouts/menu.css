@@ -64,6 +64,9 @@
     font-size: 1.5rem;
     font-weight: bold;
     margin-left: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .menu-open .menu-settings :last-child .icon {
