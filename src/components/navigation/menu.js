@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -11,7 +11,7 @@ import settings from "../../images/icons/settings.png";
 export const Menu = ({handleToggle, isOpen}) => {
     const navigate = useNavigate();
     const { isAuthenticated } = useAuth0();
-    
+
     return (
         <div className={!isOpen ? "menu-closed" : "menu-open"}>
             <div className="menu-pages">
@@ -30,20 +30,17 @@ export const Menu = ({handleToggle, isOpen}) => {
                 })}
             </div>
             <div className="menu-settings">
-                {() => {
-                    if (isAuthenticated) {
-                        return (
+                {
+                    isAuthenticated ?
+                        (
                             <button className="button-nav">
                                 <img className="icon" src={settings} alt={`Setting icon`} onClick={() => navigate('/settings')} />
                                 <div className="label">
                                     Settings
                                 </div>
                             </button>
-                        )
-                    } else {
-                        return null;
-                    }
-                }}
+                        ) : null
+                }
                 <button className="button-nav" alt={'Open or close nav panel'} onClick={() => handleToggle()}> 
                     <img className="icon" src={arrow} alt={`Arrow icon`} />
                     <div className="label">

@@ -4,7 +4,7 @@ import { PageLayout } from "../components/page-layout";
 import { getProtectedResource } from "../services/message.service";
 
 export const EisenhowerMatrixPage = () => {
-  const { getAccessTokenSilently } = useAuth0();
+  const { isAuthenticated } = useAuth0();
 
   // Example of fetching protected resource
   // useEffect(() => {
