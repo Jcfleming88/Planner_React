@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap");
+
+/* Theme */
+
+:root {
+  /* Colors */
+  --primary: #29F5A0;
+  --secondary: #522AF5;
+  --tertiary: #F5DF2A;
+  --quaternary: #F5492A;
+
+  --black: #000000;
+  --white: #ffffff;
+  --light-aluminium: #eaecee;
+  --aluminium: #bdc4cf;
+  --dark-aluminium: #2a2e35;
+
+  --orange: #ff4f40;
+  --indigo: #635dff;
+  --yellow: #ebca40;
+  --mandarine: #ff7f38;
+  --pink: #ff44dd;
+  --blue: #3885ff;
+  --aqua: #3ec6eb;
+  --emerald: #1bc99f;
+
+  /* Background Gradients */
+  --primary-secondary-gradient: linear-gradient(
+    153.07deg,
+    var(--primary) -2.47%,
+    var(--secondary) 102.78%
+  );
+
+  /* Fonts */
+  --font-primary: "Inter", sans-serif;
+  --font-secondary: "Space Grotesk", sans-serif;
+  --font-mono: "Fira Code", monospace;
+
+  /* Dimensions*/
+  --width-menu-desktop-closed: 50px;
+  --width-menu-desktop-open: 200px;
+  
+  --width-menu-mobile-closed: 0px;
+  --width-menu-mobile-open: 100vw;
+
+  --height-header: 60px;
+  --height-header-border: 4px;
+  --height-header-tot: calc(var(--height-header) + var(--height-header-border));
+}

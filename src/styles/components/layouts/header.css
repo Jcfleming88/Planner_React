@@ -1,0 +1,142 @@
+.header__container {
+  display: flex;
+  justify-content: center;
+  height: var(--height-header-tot);
+  width: 100%;
+
+  z-index: 300;
+  background-image: var(--primary-secondary-gradient);
+}
+
+.header {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  /* responsive */
+
+  height: var(--height-header);
+  padding: 0 24px;
+  margin: 0;
+
+  background-color: var(--black);
+}
+
+.header__brand {
+  display: flex;
+  align-items: center;
+
+  height: 100%;
+
+  /* responsive */
+
+  margin-right: 64px;
+}
+
+.header__link {
+  display: flex;
+  align-items: center;
+
+  height: 100%;
+}
+
+.header__logo {
+  height: 3.2rem;
+}
+
+.header__icon {
+  display: none;
+}
+
+.header__buttons {
+  display: flex;
+  margin-left: auto;
+}
+
+@media only screen and (max-width: 640px) and (hover: none) {
+  .mobile-header__tab:hover {
+    color: var(--white);
+  }
+
+  .mobile-header__tab--active:hover {
+    color: var(--white);
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .header__container {
+    display: none;
+  }
+
+  .header__tab {
+    font-size: 1.5rem;
+  }
+
+  .header {
+    height: 6.4rem;
+
+    padding: 0.8rem 1.6rem;
+  }
+
+  .header__brand {
+    display: flex;
+    align-items: center;
+
+    margin-right: 1.6rem;
+  }
+
+  .header__logo {
+    height: 3.2rem;
+  }
+
+  .header__tab--active {
+    text-decoration-line: none;
+    color: var(--pink);
+  }
+
+  .header__label {
+    display: none;
+  }
+
+  .header__icon {
+    display: block;
+    font-size: 3.2rem;
+  }
+
+  .header__buttons {
+    margin-left: 24px;
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  .header__tab {
+    font-size: 1.3rem;
+  }
+
+  .header {
+    height: 6.4rem;
+
+    padding: 0.8rem 1.6rem;
+  }
+
+  .header__brand {
+    display: flex;
+    align-items: center;
+
+    margin-right: 1.6rem;
+  }
+
+  .header__logo {
+    height: 2.8rem;
+  }
+
+  .header__tab--active {
+    text-decoration-line: none;
+    color: var(--pink);
+  }
+
+  .header__buttons {
+    margin-left: 24px;
+  }
+}
