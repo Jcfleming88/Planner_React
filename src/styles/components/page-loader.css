@@ -1,9 +1,15 @@
 .loader {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.loader img{
   height: 5rem;
   width: 5rem;
-
-  margin: auto;
-
   animation: spin 2s infinite linear;
 }
 

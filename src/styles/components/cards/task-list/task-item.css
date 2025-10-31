@@ -1,0 +1,41 @@
+.task-item {
+    height: fit-content;
+
+    margin: 10px;
+    padding: 10px;
+
+    border-radius: 15px;
+    overflow: hidden;
+
+    background-color: var(--black);
+
+    display: flex;
+    flex-direction: row;
+}
+
+.task-item .task-urgency {
+    width: 10px;
+    border: var(--light-aluminium) solid 1px;
+    border-radius: 5px;
+    margin-right: 1rem;
+}
+
+.task-item .task-description {
+    height: 100%;
+    width: 100%
+}
+
+.task-item h4 {
+    margin: 0;
+    color: var(--white);
+}
+
+.task-item h6 {
+    margin: 0;
+    color: var(--white);
+}
+
+.task-item:hover {
+    background-color: var(--secondary-dark-50);
+    cursor: pointer;
+}

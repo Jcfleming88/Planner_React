@@ -1,0 +1,30 @@
+.icon-button{
+    height: 30px;
+    width: 30px;
+    aspect-ratio: 1 / 1;
+    border: var(--white) solid 1px;
+    border-radius: 15px;
+
+    padding: 0;
+    margin: 0;
+
+    box-shadow: 0px 0px 10px var(--black);
+
+    align-content: center;
+    justify-content: center;
+}
+
+.icon-button:hover{
+    box-shadow: 0px 0px 6px var(--black);
+}
+
+.icon-button:active{
+    box-shadow: 0px 0px 0px var(--black);
+}
+
+.icon-button .icon-image {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    margin: 0;
+    filter: invert(1);
+}

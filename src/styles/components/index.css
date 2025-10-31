@@ -1,5 +1,4 @@
-@import "button.css";
-@import "code-snippet.css";
+@import "buttons/index.css";
+@import "cards/code-snippet.css";
 @import "page-loader.css";
-@import "layouts/index.css";
-    
+@import "cards/index.css";
