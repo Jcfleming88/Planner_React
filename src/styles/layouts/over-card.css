@@ -1,0 +1,24 @@
+.over-pane {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.over-pane .central-card {
+    background: var(--black);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+    padding: 2rem;
+    min-width: 40vw;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+    align-items: left;
+}

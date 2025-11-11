@@ -26,7 +26,7 @@ export const ProjectList = ({
         const isSelected = project.Id === selectedProject;
         return (
           <ProjectItem
-            key={project.Id}
+            key={'pr'+project.Id}
             project={project}
             onSelectProject={onSelectProject}
             isSelected={isSelected}

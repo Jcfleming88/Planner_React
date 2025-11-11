@@ -1,0 +1,27 @@
+.side-pane-open {
+    position: absolute;
+    top: var(--height-header-tot);
+    right: 0;
+    height: calc(100% - var(--height-header-tot));
+    width: 50vw;
+    background: var(--black);
+    border-left: 4px solid color-mix(in srgb, var(--primary) 50%, var(--secondary) 50%);
+    z-index: 9999;
+    transform: translateX(0);
+    overflow-y: auto;
+}
+
+.side-pane-closed {
+    position: absolute;
+    top: var(--height-header-tot);;
+    right: 0;
+    height: 100%;
+    width: 0vw;
+    background: var(--black);
+    border-left: 0px solid var(--secondary);
+    z-index: 9999;
+    transform: translateX(100%);
+    box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+    overflow-y: auto;
+    pointer-events: none;
+}

@@ -7,7 +7,7 @@ export const TaskList = ({ title, buttons, colour1, colour2, tasks }) => {
         <ListBox title={title} buttons={buttons} colour1={colour1} colour2={colour2}>
             {tasks.map((task) => {
                 return (
-                    <TaskItem key={task.Id} task={task} />
+                    <TaskItem key={'tk'+task.Id} task={task} />
                 )
             })}
         </ListBox>

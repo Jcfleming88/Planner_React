@@ -12,8 +12,10 @@ import "../styles/theme.css";
 import { projects, tasks } from "../dev/example-data.js";
 import { Project } from "../modules/project.js";
 import { IconButton } from "../components/buttons/icon-button.js";
+import { EditProject } from "../components/cards/edit-project.js";
+import { EditTask } from "../components/cards/edit-task.js";
 
-import plus from "../images/icons/plus.png"
+import plus from "../images/icons/plus.png";
 
 export const EisenhowerMatrixPage = () => {
   const { isAuthenticated } = useAuth0();
@@ -29,6 +31,9 @@ export const EisenhowerMatrixPage = () => {
   const [filteredTasksRemove, setFilteredTasksRemove] = useState([]);
 
   const [projectId, setProjectId] = useState(0);
+  
+  const [projectOpen, setProjectOpen] = useState(false);
+  const [taskOpen, setTaskOpen] = useState(false);
   //#endregion
 
   //#region Effects
@@ -92,6 +97,22 @@ export const EisenhowerMatrixPage = () => {
   const handleSelectProject = (projectId) => {
     setProjectId(projectId);
   };
+
+  const handleNewProject = () => {
+    setProjectOpen(true)
+  }
+
+  const handleCloseProject = () => {
+    setProjectOpen(false)
+  }
+
+  const handleNewTask = () => {
+    setTaskOpen(true)
+  }
+
+  const handleCloseTask = () => {
+    setTaskOpen(false)
+  }
   //#endregion
 
   //#region Example
@@ -143,7 +164,13 @@ export const EisenhowerMatrixPage = () => {
           </h1>
           <ProjectList
             title="Projects"
-            buttons={[(<IconButton imageUrl={plus} alt="Add project" bgColour={'var(--secondary-light-20)'}/>)]}
+            buttons={[
+              <IconButton
+                imageUrl={plus}
+                alt="Add project"
+                bgColour={"var(--secondary-light-20)"}
+              />,
+            ]}
             colour1="var(--secondary-dark-50)"
             colour2="var(--secondary)"
             projects={allProjects}
@@ -155,33 +182,62 @@ export const EisenhowerMatrixPage = () => {
         <div className="content__eisenhower-matrix">
           <TaskList
             title="Do"
-            buttons={[(<IconButton imageUrl={plus} alt="Add task" bgColour={'var(--primary-light-20)'}/>)]}
+            buttons={[
+              <IconButton
+                imageUrl={plus}
+                alt="Add task"
+                bgColour={"var(--primary-light-20)"}
+              />,
+            ]}
             colour1="var(--primary-dark-50)"
             colour2="var(--primary)"
             tasks={filteredTasksDo}
           />
           <TaskList
             title="Schedule"
-            buttons={[(<IconButton imageUrl={plus} alt="Add task" bgColour={'var(--secondary-light-20)'}/>)]}
+            buttons={[
+              <IconButton
+                imageUrl={plus}
+                alt="Add task"
+                bgColour={"var(--secondary-light-20)"}
+              />,
+            ]}
             colour1="var(--secondary-dark-50)"
             colour2="var(--secondary)"
             tasks={filteredTasksSchedule}
           />
           <TaskList
             title="Delegate"
-            buttons={[(<IconButton imageUrl={plus} alt="Add task" bgColour={'var(--tertiary-light-20)'}/>)]}
+            buttons={[
+              <IconButton
+                imageUrl={plus}
+                alt="Add task"
+                bgColour={"var(--tertiary-light-20)"}
+              />,
+            ]}
             colour1="var(--tertiary-dark-50)"
             colour2="var(--tertiary)"
             tasks={filteredTasksDelegate}
           />
           <TaskList
             title="Remove"
-            buttons={[(<IconButton imageUrl={plus} alt="Add task" bgColour={'var(--quaternary-light-20)'}/>)]}
+            buttons={[
+              <IconButton
+                imageUrl={plus}
+                alt="Add task"
+                bgColour={"var(--quaternary-light-20)"}
+              />,
+            ]}
             colour1="var(--quaternary-dark-50)"
             colour2="var(--quaternary)"
             tasks={filteredTasksRemove}
           />
         </div>
+        <EditProject
+          isOpen={projectOpen}
+          onClose={() => handleCloseProject()}
+        />
+        <EditTask isOpen={taskOpen} onClose={() => handleCloseTask()} />
       </div>
     </PageLayout>
   );

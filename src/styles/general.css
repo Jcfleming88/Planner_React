@@ -108,16 +108,12 @@ blockquote {
 
 body,
 button,
-input,
-select,
-textarea {
+select {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 button,
-input,
-select,
-textarea {
+select {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;

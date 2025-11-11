@@ -113,12 +113,14 @@
 }
 
 .tab-box .list-box__container .project-item {
+  height:100%;
   border-radius: 0;
   border-right: rgba(0, 0, 0, 0.5) solid 1.5px;
   margin: 0px;
   padding: 0.6rem;
   padding-left: 1.2rem;
   padding-right: 1.2rem;
+  align-content: center;
 }
 
 .tab-box .list-box__container .project-item:last-child {

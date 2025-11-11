@@ -20,7 +20,11 @@ export const ListBox = ({
           <h3 className="title">{title}</h3>
         </div>
         <div className="list-box__container">{children}</div>
-        <div className="title-bar__buttons">{buttons}</div>
+        <div className="title-bar__buttons">
+          {Array.isArray(buttons)
+            ? buttons.map((btn, idx) => React.cloneElement(btn, { key: idx }))
+            : buttons}
+        </div>
       </div>
     );
   } else {
@@ -33,7 +37,11 @@ export const ListBox = ({
           }}
         >
           <h3 className="title">{title}</h3>
-          <div className="title-bar__buttons">{buttons}</div>
+          <div className="title-bar__buttons">
+            {Array.isArray(buttons)
+              ? buttons.map((btn, idx) => React.cloneElement(btn, { key: idx }))
+              : buttons}
+          </div>
         </div>
         <div className="list-box__container">{children}</div>
       </div>
