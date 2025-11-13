@@ -1,3 +1,6 @@
+/* Button Styles */
+/* Standard button styles with colors */
+/* Primary color is the default */
 .button {
     background-color: var(--primary-dark-20);
     color: var(--white);
@@ -16,4 +19,97 @@
 
 .button:active {
     background-color: var(--primary-dark-50);
+}
+
+/* Secondary */
+.button[color='secondary'] {
+    background-color: var(--secondary-dark-20);
+}
+
+.button:hover[color='secondary'] {
+    background-color: var(--secondary);
+}
+
+.button:active[color='secondary'] {
+    background-color: var(--secondary-dark-50);
+}
+
+/* Tertiary */
+.button[color='tertiary'] {
+    background-color: var(--secondary-dark-20);
+}
+
+.button:hover[color='tertiary'] {
+    background-color: var(--secondary);
+}
+
+.button:active[color='tertiary'] {
+    background-color: var(--secondary-dark-50);
+}
+
+/* Quaternary */
+.button[color='quaternary'] {
+    background-color: var(--secondary-dark-20);
+}
+
+.button:hover[color='quaternary'] {
+    background-color: var(--secondary);
+}
+
+.button:active[color='quaternary'] {
+    background-color: var(--secondary-dark-50);
+}
+
+/* Outline variant styles */
+.button[variant='outline'] {
+    background-color: transparent;
+    border: 2px solid var(--primary);
+}
+
+.button:hover[variant='outline'][color='primary'] {
+    background-color: var(--primary);
+}
+
+.button:active[variant='outline'][color='primary'] {
+    background-color: var(--primary-dark-50);
+}
+
+/* Secondary Outline */
+.button[variant='outline'][color='secondary'] {
+    background-color: transparent;
+    border: 2px solid var(--secondary);
+}
+
+.button:hover[variant='outline'][color='secondary'] {
+    background-color: var(--secondary);
+}
+
+.button:active[variant='outline'][color='secondary'] {
+    background-color: var(--secondary-dark-50);
+}
+
+.button[variant='outline'][color='tertiary'] {
+    background-color: transparent;
+    border: 2px solid var(--tertiary);
+}
+
+.button:hover[variant='outline'][color='tertiary'] {
+    background-color: var(--tertiary);
+}
+
+.button:active[variant='outline'][color='tertiary'] {
+    background-color: var(--tertiary-dark-50);
+}
+
+.button[variant='outline'][color='quaternary'] {
+    background-color: transparent;
+    border: 2px solid var(--quaternary);
+}
+
+.button:hover[variant='outline'][color='quaternary'] {
+    background-color: var(--quaternary);
+}
+
+.button:active[variant='outline'][color='quaternary'] {
+    background-color: var(--quaternary-dark-50);
 }
