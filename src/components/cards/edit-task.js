@@ -1,16 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SideCard } from "../navigation/side-card";
 import { Task } from "../../modules/task";
 import { urgencyLevels } from "../../modules/urgency";
+import "../../utils/date-utils";
+import { dateToIso, isoToDate } from "../../utils/date-utils";
 
 export const EditTask = ({
-  isOpen = false,
   task = null,
-  onClose = null,
-  onSubmit = null,
+  categories = []
 }) => {
-  const [currentTask, setCurrentTask] = useState(task ? task : new Task());
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentTask, setCurrentTask] = useState(null);
+  
+  //#region Effects
+  useEffect(() => {
+    if(task){
+      setCurrentTask({
+        ...task,
+        StartDate: dateToIso(task?.Start) || "",
+        EndDate: dateToIso(task?.End) || "",
+        BecomesUrgent: dateToIso(task?.BecomesUrgent) || ""
+      });
+    }
+  }, [task]);
 
+  useEffect(() => {
+    if(currentTask != null) {
+      setIsOpen(currentTask != null);
+    }
+  }, [currentTask]);
+  //#endregion
+
+  //#region Handlers
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -22,14 +44,36 @@ export const EditTask = ({
     setCurrentTask(updatedTask);
   };
 
+  const handleCheckbox = (event) => {
+    // Get the checkbox state (checked or not)
+    const isChecked = event.target.checked;
+
+    // The name of the input field
+    const name = event.target.name; 
+
+    // Update the currentTask state
+    setCurrentTask(prevTask => ({
+      ...prevTask,
+      [name]: isChecked
+    }));
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  const handleSubmit = (e) => {};
+  //#endregion
+
+  if(currentTask == null) {
+    return null;
+  }
+
   return (
-    <SideCard isOpen={isOpen} onClose={onClose}>
+    <SideCard isOpen={isOpen} onClose={handleClose}>
       <form
         className="pane-form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (onSubmit) onSubmit(currentTask);
-        }}
+        onSubmit={(e) => {handleSubmit(e)}}
       >
         <h2 className="pane-header">
           Task
@@ -37,7 +81,7 @@ export const EditTask = ({
         <div className="pane-main">
           <div className="form-input">
             <h4 className="label" htmlFor="name">
-              Task Name:
+              Task Name
             </h4>
             <input
               type="text"
@@ -52,7 +96,7 @@ export const EditTask = ({
         <div className="pane-side">
           <div className="form-input">
             <h4 className="label" htmlFor="category">
-              Category:
+              Category
             </h4>
             <input
               type="text"
@@ -63,40 +107,41 @@ export const EditTask = ({
               onChange={handleChange}
               autoComplete="off"
             />
-            <datalist id="category-list">
-              <option value="Work" />
-              <option value="Personal" />
-              <option value="Urgent" />
-              <option value="Home" />
-            </datalist>
+            { categories.length > 0 && (
+              <datalist id="category-list">
+                {categories.map((cat, index) => (
+                  <option key={index} value={cat} />
+                ))}
+              </datalist>
+            )}
           </div>
           <div className="form-input">
             <h4 className="label" htmlFor="startDate">
-              Start Date:
+              Start Date
             </h4>
             <input
               type="date"
               name="StartDate"
               className="input"
-              value={currentTask.StartDate || ""}
+              value={currentTask.StartDate}
               onChange={handleChange}
             />
           </div>
           <div className="form-input">
             <h4 className="label" htmlFor="endDate">
-              End Date:
+              End Date
             </h4>
             <input
               type="date"
               name="EndDate"
               className="input"
-              value={currentTask.EndDate || ""}
+              value={currentTask.EndDate}
               onChange={handleChange}
             />
           </div>
           <div className="form-input">
             <h4 className="label" htmlFor="urgency">
-              Urgency Level:
+              Urgency Level
             </h4>
             <select
               name="Urgency"
@@ -109,45 +154,34 @@ export const EditTask = ({
                 })}
             </select>
           </div>
-          <div className="form-input">
-            <label className="label" htmlFor="setBecomesUrgent">
-              Set Becomes Urgent Date:
-            </label>
+          <div className="form-checkbox">
+            <h4 className="label" htmlFor="automateUrgency">
+              Auto Urgency
+            </h4>
             <input
               type="checkbox"
-              name="SetBecomesUrgent"
-              checked={!!currentTask.BecomesUrgent}
-              onChange={(e) => {
-                if (e.target.checked) {
-                  setCurrentTask(
-                    new Task({
-                      ...currentTask,
-                      BecomesUrgent: currentTask.BecomesUrgent || "",
-                    })
-                  );
-                } else {
-                  setCurrentTask(
-                    new Task({
-                      ...currentTask,
-                      BecomesUrgent: "",
-                    })
-                  );
-                }
-              }}
+              name="AutomateUrgency"
+              className="checkbox"
+              checked={currentTask.AutomateUrgency || false}
+              onChange={handleCheckbox}
             />
-            {currentTask.BecomesUrgent !== "" && (
-              <input
-                type="date"
-                name="BecomesUrgent"
-                className="input"
-                value={currentTask.BecomesUrgent || ""}
-                onChange={handleChange}
-              />
-            )}
+          </div>
+          <div className="form-input">
+            <h4 className="label" htmlFor="becomesUrgent">
+              Become Urgent At
+            </h4>
+            <input
+              type="date"
+              name="BecomesUrgent"
+              className="input"
+              disabled={!currentTask.AutomateUrgency}
+              value={currentTask.BecomesUrgent}
+              onChange={handleChange}
+            />
           </div>
         </div>
         <div className="pane-buttons">
-          <button className="button" type="button" onClick={onClose}>
+          <button className="button" type="button" onClick={handleClose}>
             Cancel
           </button>
           <button className="button" type="submit">

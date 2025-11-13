@@ -29,8 +29,8 @@ export class Task {
     Start = null,
     End = new Date(),
     Urgency = 0,
-    AutomateUrgency = true,
-    BecomesUrgent = new Date(),
+    AutomateUrgency = false,
+    BecomesUrgent = null,
     AssignedTo = [""], // Changed from [] to [""] to match the original structure's default
     Status = 0
   } = {}) {
@@ -44,7 +44,13 @@ export class Task {
     this.End = End;
     this.Urgency = Urgency;
     this.AutomateUrgency = AutomateUrgency;
-    this.BecomesUrgent = BecomesUrgent;
+    if(BecomesUrgent){
+      this.BecomesUrgent = BecomesUrgent;
+    } else if (Start && AutomateUrgency) {
+      this.BecomesUrgent = Start.setDate(Start.getDate() + 1)
+    } else {
+      this.BecomesUrgent = null;
+    }
     this.AssignedTo = AssignedTo;
     this.Status = Status;
   }

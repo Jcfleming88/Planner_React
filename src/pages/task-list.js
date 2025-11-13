@@ -14,6 +14,7 @@ import { Project } from "../modules/project.js";
 import { IconButton } from "../components/buttons/icon-button.js";
 import { EditProject } from "../components/cards/edit-project.js";
 import { EditTask } from "../components/cards/edit-task.js";
+import { Task } from "../modules/task.js";
 
 import plus from "../images/icons/plus.png"
 
@@ -29,9 +30,9 @@ export const TaskListPage = () => {
   const [filteredTasks, setFilteredTasks] = useState([]);
 
   const [projectId, setProjectId] = useState(0);
+  const [currentTask, setCurrentTask] = useState(null);
 
   const [projectOpen, setProjectOpen] = useState(false);
-  const [taskOpen, setTaskOpen] = useState(false);
   //#endregion
 
   //#region Effects
@@ -67,12 +68,12 @@ export const TaskListPage = () => {
   }
 
   const handleNewTask = () => {
-    setTaskOpen(true)
-  }
+    setCurrentTask(new Task());
+  };
 
-  const handleCloseTask = () => {
-    setTaskOpen(false)
-  }
+  const handleTaskClick = (task) => {
+    setCurrentTask(task);
+  };
   //#endregion
 
   //#region Example
@@ -138,10 +139,11 @@ export const TaskListPage = () => {
             colour1="var(--secondary-dark-50)"
             colour2="var(--secondary)"
             tasks={filteredTasks}
+            onTaskClick={handleTaskClick}
           />
         </div>
         <EditProject isOpen={projectOpen} onClose={() => handleCloseProject()}/>
-        <EditTask isOpen={taskOpen} onClose={() => handleCloseTask()}/>
+        <EditTask task={currentTask}/>
       </div>
     </PageLayout>
   );

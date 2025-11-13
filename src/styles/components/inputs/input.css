@@ -1,4 +1,4 @@
-input {
+.input {
   width: 100%;
   background: var(--mono-95);
   border-radius: 10px;
@@ -8,6 +8,11 @@ input {
   outline: none;
 }
 
-input:focus {
+.input:focus {
   box-shadow: 0 0 0 2px var(--primary);
+}
+
+.input:disabled {
+  background: var(--black);
+  color: var(--mono-90);
 }

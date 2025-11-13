@@ -1,7 +1,9 @@
 import React from "react";
 import { urgencyColours } from "../../../modules/urgency";
 
-export const TaskItem = ({ task }) => {
+export const TaskItem = ({ task, onClick }) => {
+    const taskItem = task;
+
     const options = {
         weekday: 'short', // e.g., 'Mon'
         year: 'numeric',  // e.g., '2025'
@@ -11,8 +13,12 @@ export const TaskItem = ({ task }) => {
         minute: '2-digit',
     };
 
+    const handleClick = () => {
+        onClick(taskItem);
+    }
+
     return (
-        <div className="task-item">
+        <div className="task-item" onClick={() => {handleClick()}}>
             <div className="task-urgency" style={{backgroundColor: urgencyColours[task.Urgency]}}/>
             <div className="task-description">
                 <h4>
