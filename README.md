@@ -1,49 +1,54 @@
-# Template App
+# Planner (WIP)
+*last updated: 14-11-25*
 
-This app was created based on the Starter SPA code from the Auth0 starter example. The code has been modified and updated to work better and automated some functions such as adding new pages to the router system and menu as required. It also keeps some of the example code from the Auth0 example.
+## About
 
-["Figma Page for the App"](https://www.figma.com/design/6fQjj0ZorKt0qe0Us8RIcU/Pages?node-id=0-1&t=E62TO8n5JYMXvOZe-1)
+This is a simple planner application designed in **React** to manage tasks across multiple projects and people. Some of the features I'm working on:-
 
-## Auth0 example pages
+* **Data structure** - People often have multiple tasks across multiple projects. Projects will encompass a set of tasks that will each have a set of sub tasks.
+* **Multiple displays** - Whatever your preferred way of working is - a task list, Eisenhower matrix, Kanban - you should be able to see and manage task in a way that suits you.
+* **Filtering data** - Tasks will be assigned to people, projects and categories. Whatever you're looking for should be easy to find and you should be able to filter tasks to find them faster.
+* **Multiple users** - Users will be able to login and share projects and tasks with other people. Authentication is being handled via Auth0, see [Auth0 Developer Resources](https://developer.auth0.com/resources) for more info.
+* **Detailed task info** - When creating tasks, it should be possible to add different types of info: text, checklist, other tasks.
+* **Statistics** - There's a lot of data in a task list, doing some simple data science we should be able to see at a glance what projects are running on time, where tasks are overdue and how close a project or task with sub-tasks is to completion.
 
-Visit the ["React/JavaScript Code Samples: SPA Security in Action"](https://developer.auth0.com/resources/code-samples/spa/react) section of the ["Auth0 Developer Resources"](https://developer.auth0.com/resources) to explore how you can secure React applications written in JavaScript by implementing endpoint protection and authorization with Auth0.
+Note:- This is a personal project done in my spare time to improve my skills and just see what I can do.
 
-[![React/JavaScript Code Samples: SPA Security in Action](https://cdn.auth0.com/blog/hub/code-samples/spa/react-javascript.png)](https://developer.auth0.com/resources/code-samples/spa/react)
+## API
 
-## Why Use Auth0?
+The API for this is being developed in a separate repository and can be found in my [Planner API Repo](https://github.com/Jcfleming88/Planner_API)
 
-Auth0 is a flexible drop-in solution to add authentication and authorization services to your applications. Your team and organization can avoid the cost, time, and risk that come with building your own solution to authenticate and authorize users. We offer tons of guidance and SDKs for you to get started and [integrate Auth0 into your stack easily](https://developer.auth0.com/resources/code-samples/full-stack).
+## Progress So Far
 
-## Set Up and Run the React Project
+### Multiple Displays
 
-Install the project dependencies:
+#### Task List
+The basic task list gives plenty of space to see your tasks. Useful for if we want to display more data on the page. It may be useful down the line to increase the level of detail on projects and tasks here.
 
-```bash
-npm install
-```
+![Task List](./src/images/screenshots/Tasks-Page.png "Tasks Page")
 
-The starter React project offers a functional application that consumes data from an external API to hydrate the user interface. For simplicity and convenience, the starter project simulates the external API locally using [`json-server`](https://github.com/typicode/json-server).
+#### Eisenhower Matrix
+The idea of an Eisenhower Matrix is that urgent things are on the left of the matrix and important things are on the top row. Typically, you should **Do** the things in the top left, **Schedule** the things in the top right, **Delegate** the less important but urgent things on the bottom left and **Remove** the not important, not urgent things in the bottom right by any means!
 
-However, you can also integrate this starter project with any of the ["Hello World" API code samples, which are available in multiple backend frameworks and programming languages](https://github.com/orgs/auth0-developer-hub/repositories?language=&q=api+hello-world&sort=&type=public).
+This is my preferred way of managing my day to day tasks as I find ToDo lists a bit more restrictive and unfocused. It's also useful to move tasks around depending on what you think is important and urgent as priorities change.
 
-The compatible API server runs on `http://localhost:6060` by default. As such, to connect your React application with that API server, create a `.env` file under the root project directory and populate it with the following environment variables:
+![Eisenhower Matrix](./src/images/screenshots/Eisenhower-Matrix.png "Eisenhower Matrix")
 
-```bash
-REACT_APP_API_SERVER_URL=http://localhost:6060
-```
+#### Kanban
+Used extensively across projects to manage teams and run sprints. Being able to check tasks and move them through a check/review process helps to keep teams on task and on time.
 
-Next, execute the following command to run the JSON server API:
+![Kanban](./src/images/screenshots/Kanban-Board.png "Kanban")
 
-```bash
-npm run api
-```
+### Data Structure
 
-Finally, open another terminal tab and execute this command to run your React application:
+#### Projects
 
-```bash
-npm start
-```
+Keeping the projects simple to start with, I've added the ability to create new projects with a name and description. Later on, I'll look to add the ability to assign other people to a project and manage user stories.
 
-Visit [`http://localhost:4040/`](http://localhost:4040/) to access the starter application.
+![Add Project](./src/images/screenshots/Project-Add.png "Project Add")
 
-In the starter project, all the starter React application routes are public. However, you can use Auth0 to get an ID token to hydrate the user profile information present on the `/profile` page with information from a real user. With Auth0, you can also get an access token to make a secure call to an external API to hydrate the messages present in the `/protected` and `/admin` pages.
+#### Tasks
+
+Starting with the base info, I've created a pull-out window where you can input all the key information about a task. This will allow me to move onto creating a database where this information can be added and in the space below the 'Task Name' I'll be able to build out the detailed task information.
+
+![Add Task](./src/images/screenshots/Task-Add.png "Task Add")
