@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap");
+
+/* Theme */
+
+:root {
+  /* Colors */
+  --primary: #29F5A0;
+  --secondary: #522AF5;
+  --tertiary: #F5DF2A;
+  --quaternary: #F5492A;
+
+  --primary-light-50: color-mix(in srgb, var(--primary) 50%, white 50%);
+  --secondary-light-50: color-mix(in srgb, var(--secondary) 50%, white 50%);
+  --tertiary-light-50: color-mix(in srgb, var(--tertiary) 50%, white 50%);
+  --quaternary-light-50: color-mix(in srgb, var(--quaternary) 50%, white 50%);
+
+  --primary-dark-50: color-mix(in srgb, var(--primary) 50%, black 50%);
+  --secondary-dark-50: color-mix(in srgb, var(--secondary) 50%, black 50%);
+  --tertiary-dark-50: color-mix(in srgb, var(--tertiary) 50%, black 50%);
+  --quaternary-dark-50: color-mix(in srgb, var(--quaternary) 50%, black 50%);
+
+  --primary-light-20: color-mix(in srgb, var(--primary) 80%, white 20%);
+  --secondary-light-20: color-mix(in srgb, var(--secondary) 80%, white 20%);
+  --tertiary-light-20: color-mix(in srgb, var(--tertiary) 80%, white 20%);
+  --quaternary-light-20: color-mix(in srgb, var(--quaternary) 80%, white 20%);
+
+  --primary-dark-20: color-mix(in srgb, var(--primary) 80%, black 20%);
+  --secondary-dark-20: color-mix(in srgb, var(--secondary) 80%, black 20%);
+  --tertiary-dark-20: color-mix(in srgb, var(--tertiary) 80%, black 20%);
+  --quaternary-dark-20: color-mix(in srgb, var(--quaternary) 80%, black 20%);
+
+  --white: #ffffff;
+  --mono-05: color-mix(in srgb, var(--white) 95%, var(--black) 5%);
+  --mono-10: color-mix(in srgb, var(--white) 90%, var(--black) 10%);
+  --mono-20: color-mix(in srgb, var(--white) 80%, var(--black) 20%);
+  --mono-30: color-mix(in srgb, var(--white) 70%, var(--black) 30%);
+  --mono-40: color-mix(in srgb, var(--white) 60%, var(--black) 40%);
+  --mono-50: color-mix(in srgb, var(--white) 50%, var(--black) 50%);
+  --mono-60: color-mix(in srgb, var(--white) 40%, var(--black) 60%);
+  --mono-70: color-mix(in srgb, var(--white) 30%, var(--black) 70%);
+  --mono-80: color-mix(in srgb, var(--white) 20%, var(--black) 80%);
+  --mono-90: color-mix(in srgb, var(--white) 10%, var(--black) 90%);
+  --mono-95: color-mix(in srgb, var(--white) 5%, var(--black) 95%);
+  --black: #28282d;
+
+  --light-aluminium: #eaecee;
+  --aluminium: #bdc4cf;
+  --dark-aluminium: #2a2e35;
+
+  --orange: #ff4f40;
+  --indigo: #635dff;
+  --yellow: #ebca40;
+  --mandarine: #ff7f38;
+  --pink: #ff44dd;
+  --blue: #3885ff;
+  --aqua: #3ec6eb;
+  --emerald: #1bc99f;
+
+  /* Background Gradients */
+  --primary-secondary-gradient: linear-gradient(
+    153.07deg,
+    var(--primary) -2.47%,
+    var(--secondary) 102.78%
+  );
+
+  /* Fonts */
+  --font-primary: "Inter", sans-serif;
+  --font-secondary: "Space Grotesk", sans-serif;
+  --font-mono: "Fira Code", monospace;
+
+  /* Dimensions*/
+  --width-menu-desktop-closed: 50px;
+  --width-menu-desktop-open: 200px;
+  
+  --width-menu-mobile-closed: 0px;
+  --width-menu-mobile-open: 100vw;
+
+  --height-header: 60px;
+  --height-header-border: 4px;
+  --height-header-tot: calc(var(--height-header) + var(--height-header-border));
+}

@@ -1,0 +1,14 @@
+textarea {
+  width: 100%;
+  background: var(--mono-95);
+  border-radius: 10px;
+  color: var(--white);
+  border: none;
+  padding: 0.5em 1em;
+  outline: none;
+  resize:none;
+}
+
+textarea:focus {
+  box-shadow: 0 0 0 2px var(--primary);
+}

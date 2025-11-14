@@ -1,0 +1,167 @@
+.list-box {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px #202020;
+
+  overflow: hidden;
+}
+
+.list-box .title-bar {
+  padding: 1.5rem;
+  padding-top: 1.2rem;
+  padding-bottom: 0.75rem;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.list-box .title-bar .title {
+  width: fit-content;
+  margin: 0;
+  color: var(--white);
+}
+
+.list-box .title-bar .title-bar__buttons {
+  height: 2.4rem;
+  width: fit-content;
+  margin-left: auto;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.list-box .title-bar .title-bar__buttons .button {
+  height: 2.4rem;
+  width: fit-content;
+  border-radius: 1.2rem;
+}
+
+.list-box .list-box__container {
+  height: 100%;
+  min-height: 5rem;
+
+  background-color: var(--dark-aluminium);
+  overflow: auto;
+
+  /* Custom scrollbar for modern browsers */
+  scrollbar-color: var(--scrollbar-thumb, #888) var(--scrollbar-track, #222);
+}
+
+/* For Chrome, Edge, and Safari */
+.list-box .list-box__container::-webkit-scrollbar {
+  height: 8px;
+  background: var(--scrollbar-track, #222);
+}
+
+.list-box .list-box__container::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb, #888);
+  border-radius: 4px;
+}
+
+.list-box .list-box__container::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover, #aaa);
+}
+
+.tab-box {
+  height: fit-content;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px #202020;
+
+  overflow: hidden;
+}
+
+.tab-box .title-bar {
+  align-items: center;
+  padding: 0.6rem;
+  padding-left: 1.2rem;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.tab-box .title-bar .title {
+  margin: 0px;
+  width: fit-content;
+  color: var(--white);
+}
+
+.tab-box .list-box__container {
+  width: 100%;
+  overflow: auto;
+
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+
+  display: flex;
+  flex-direction:row;
+
+  /* Custom scrollbar for modern browsers */
+  scrollbar-color: var(--scrollbar-thumb, #888) var(--scrollbar-track, #222);
+}
+
+.tab-box .list-box__container .project-item:first-child {
+  border-radius: 0;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.tab-box .list-box__container .project-item {
+  height:100%;
+  border-radius: 0;
+  border-right: rgba(0, 0, 0, 0.5) solid 1.5px;
+  margin: 0px;
+  padding: 0.6rem;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  align-content: center;
+}
+
+.tab-box .list-box__container .project-item:last-child {
+  border-radius: 0;
+  border-right: 0px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+/* For Chrome, Edge, and Safari */
+.tab-box .list-box__container::-webkit-scrollbar {
+  height: 8px;
+  background: var(--scrollbar-track, #222);
+}
+
+.tab-box .list-box__container::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb, #888);
+  border-radius: 4px;
+}
+
+.tab-box .list-box__container::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover, #aaa);
+}
+
+.tab-box .title-bar__buttons {
+  height: 2.4rem;
+  width: fit-content;
+  margin-left: auto;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.tab-box .title-bar__buttons .button {
+  width: fit-content;
+  border-radius: 1.2rem;
+}
+
+.tab-box .title-bar__buttons {
+  height: 100%;
+
+  margin: auto;
+  margin-right: 7px;
+}
