@@ -11,6 +11,7 @@
     cursor: pointer;
     transition: background-color 0.2s;
     font-size: 1.5rem;
+    display: inline-flex;
 }
 
 .button:hover {
@@ -112,4 +113,28 @@
 
 .button:active[variant='outline'][color='quaternary'] {
     background-color: var(--quaternary-dark-50);
+}
+
+/* Login component styles */
+
+.button[type='logout'] {
+    padding: 0em;
+    padding-left: 1em;
+    gap: 0.5em;
+}
+
+.button .id_bubble {
+    background-color: var(--primary-dark-20);
+    color: var(--white);
+    border-radius: 999px;
+    font-weight: bold;
+    border: none;
+    padding: 0.5em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 1.5rem;
+}
+
+.button .button_text {
+    padding: 0.5em;
 }
