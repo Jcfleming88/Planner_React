@@ -5,7 +5,6 @@ import { PageLayout } from "../components/page-layout";
 import { ProjectList } from "../components/cards/project-list/project-list";
 import { TaskList } from "../components/cards/task-list/task-list";
 import { PageLoader } from "../components/page-loader.js";
-import { getProtectedResource } from "../services/message.service";
 
 import "../styles/theme.css";
 
@@ -16,19 +15,19 @@ import { IconButton } from "../components/buttons/icon-button.js";
 import { EditProject } from "../components/cards/edit-project.js";
 import { EditTask } from "../components/cards/edit-task.js";
 
+import { getAllProjects } from "../services/projects.service.js";
+import { getAllTasks } from "../services/tasks.service.js";
+
 import plus from "../images/icons/plus.png";
 
 export const KanbanPage = () => {
-  const { getAccessTokenSilently } = useAuth0();
+  const { user, getAccessTokenSilently } = useAuth0();
+
+  const [allProjects, setAllProjects] = useState([]);
+  const [allTasks, setAllTasks] = useState([]);
 
   const statusKeys = Object.keys(statuses).sort((a, b) => a - b);
-  const { isAuthenticated } = useAuth0();
 
-  const [allProjects, setAllProjects] = useState([
-    new Project({ Id: 0, Name: "All" }),
-    ...projects,
-  ]);
-  const [allTasks, setAllTasks] = useState([...tasks]);
   const [filteredTasks, setFilteredTasksDo] = useState([]);
 
   const [projectId, setProjectId] = useState(0);
@@ -38,6 +37,45 @@ export const KanbanPage = () => {
   //#endregion
 
   //#region Effects
+  // Fetch the projects and tasks when the page loads
+  useEffect(() => {
+    if (getAccessTokenSilently && user) {
+      const fetchData = async () => {
+        const accessToken = await getAccessTokenSilently();
+
+        // 1. Start both requests simultaneously (no await yet)
+        const projectsPromise = getAllProjects(accessToken, user);
+        const tasksPromise = getAllTasks(accessToken, user);
+
+        // 2. Wait for both to resolve at the same time
+        const [projectsResult, tasksResult] = await Promise.all([
+            projectsPromise, 
+            tasksPromise
+        ]);
+
+        // 3. Destructure the results as you did before
+        const { data: projectsData, error: projectsError } = projectsResult;
+        const { data: tasksData, error: tasksError } = tasksResult;
+
+        if (projectsError) {
+          console.error("Error fetching projects:", projectsError);
+        } else {
+          setAllProjects(projectsData);
+          console.log("Projects fetched successfully");
+        }
+
+        if (tasksError) {
+          console.error("Error fetching tasks:", tasksError);
+        } else {
+          setAllTasks(tasksData);
+          console.log("Tasks fetched successfully");
+        }
+      };
+
+      fetchData();
+    }
+  }, [getAccessTokenSilently, user]);
+
   // Update the filter list when the selected project is changed
   useEffect(() => {
     if (allTasks != null) {

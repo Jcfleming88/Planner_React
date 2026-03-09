@@ -1,7 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 import { PageLayout } from "../components/page-layout";
-import { getProtectedResource } from "../services/message.service";
 
 export const SettingsPage = () => {
   const { getAccessTokenSilently } = useAuth0();

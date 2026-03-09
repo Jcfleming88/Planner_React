@@ -4,6 +4,7 @@ import React from "react";
 export const LogoutButton = () => {
   const { user, logout } = useAuth0();
 
+  //#region Handlers
   const handleLogout = () => {
     logout({
       logoutParams: {
@@ -11,6 +12,7 @@ export const LogoutButton = () => {
       },
     });
   };
+  //#endregion
 
   return (
     <button className="button" type='logout' onClick={handleLogout} color='secondary'>

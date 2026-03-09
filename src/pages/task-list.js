@@ -5,28 +5,27 @@ import { PageLayout } from "../components/page-layout";
 import { ProjectList } from "../components/cards/project-list/project-list";
 import { TaskList } from "../components/cards/task-list/task-list";
 import { PageLoader } from "../components/page-loader.js";
-import { getProtectedResource } from "../services/message.service";
 
 import "../styles/theme.css";
 
 import { projects, tasks } from "../dev/example-data.js";
 import { Project } from "../modules/project.js";
+import { Task } from "../modules/task.js";
 import { IconButton } from "../components/buttons/icon-button.js";
 import { EditProject } from "../components/cards/edit-project.js";
 import { EditTask } from "../components/cards/edit-task.js";
-import { Task } from "../modules/task.js";
 
-import plus from "../images/icons/plus.png"
+import { getAllProjects } from "../services/projects.service.js";
+import { getAllTasks } from "../services/tasks.service.js";
+
+import plus from "../images/icons/plus.png";
 
 export const TaskListPage = () => {
   //#region Variables
-  const { getAccessTokenSilently } = useAuth0();
+  const { user, getAccessTokenSilently } = useAuth0();
 
-  const [allProjects, setAllProjects] = useState([
-    new Project({ Id: 0, Name: "All" }),
-    ...projects,
-  ]);
-  const [allTasks, setAllTasks] = useState([...tasks]);
+  const [allProjects, setAllProjects] = useState([]);
+  const [allTasks, setAllTasks] = useState([]);
   const [filteredTasks, setFilteredTasks] = useState([]);
 
   const [projectId, setProjectId] = useState(0);
@@ -36,6 +35,45 @@ export const TaskListPage = () => {
   //#endregion
 
   //#region Effects
+  // Fetch the projects and tasks when the page loads
+  useEffect(() => {
+    if (getAccessTokenSilently && user) {
+      const fetchData = async () => {
+        const accessToken = await getAccessTokenSilently();
+
+        // 1. Start both requests simultaneously (no await yet)
+        const projectsPromise = getAllProjects(accessToken, user);
+        const tasksPromise = getAllTasks(accessToken, user);
+
+        // 2. Wait for both to resolve at the same time
+        const [projectsResult, tasksResult] = await Promise.all([
+            projectsPromise, 
+            tasksPromise
+        ]);
+
+        // 3. Destructure the results as you did before
+        const { data: projectsData, error: projectsError } = projectsResult;
+        const { data: tasksData, error: tasksError } = tasksResult;
+
+        if (projectsError) {
+          console.error("Error fetching projects:", projectsError);
+        } else {
+          setAllProjects(projectsData);
+          console.log("Projects fetched successfully");
+        }
+
+        if (tasksError) {
+          console.error("Error fetching tasks:", tasksError);
+        } else {
+          setAllTasks(tasksData);
+          console.log("Tasks fetched successfully");
+        }
+      };
+
+      fetchData();
+    }
+  }, [getAccessTokenSilently, user]);
+
   // Update the filter list when the selected project is changed
   useEffect(() => {
     if (allTasks != null) {
@@ -60,12 +98,12 @@ export const TaskListPage = () => {
   };
 
   const handleNewProject = () => {
-    setProjectOpen(true)
-  }
+    setProjectOpen(true);
+  };
 
   const handleCloseProject = () => {
-    setProjectOpen(false)
-  }
+    setProjectOpen(false);
+  };
 
   const handleNewTask = () => {
     setCurrentTask(new Task());
@@ -126,7 +164,14 @@ export const TaskListPage = () => {
         <div className="content__task-list">
           <ProjectList
             title="Projects"
-            buttons={[(<IconButton imageUrl={plus} alt="Add project" bgColour={'var(--primary-light-20)'} onClick={handleNewProject}/>)]}
+            buttons={[
+              <IconButton
+                imageUrl={plus}
+                alt="Add project"
+                bgColour={"var(--primary-light-20)"}
+                onClick={handleNewProject}
+              />,
+            ]}
             colour1="var(--primary-dark-50)"
             colour2="var(--primary)"
             projects={allProjects}
@@ -135,15 +180,25 @@ export const TaskListPage = () => {
           />
           <TaskList
             title="Tasks"
-            buttons={[(<IconButton imageUrl={plus} alt="Add task" bgColour={'var(--secondary-light-20)'} onClick={handleNewTask}/>)]}
+            buttons={[
+              <IconButton
+                imageUrl={plus}
+                alt="Add task"
+                bgColour={"var(--secondary-light-20)"}
+                onClick={handleNewTask}
+              />,
+            ]}
             colour1="var(--secondary-dark-50)"
             colour2="var(--secondary)"
             tasks={filteredTasks}
             onTaskClick={handleTaskClick}
           />
         </div>
-        <EditProject isOpen={projectOpen} onClose={() => handleCloseProject()}/>
-        <EditTask task={currentTask}/>
+        <EditProject
+          isOpen={projectOpen}
+          onClose={() => handleCloseProject()}
+        />
+        <EditTask task={currentTask} />
       </div>
     </PageLayout>
   );
