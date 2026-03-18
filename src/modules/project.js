@@ -13,7 +13,7 @@ export class Project {
     Id = null,
     Name = "",
     Description = "",
-    Users = [""] // Default matches the original structure with an empty string array element
+    Users = [] // Default matches the original structure with an empty string array element
   } = {}) {
     this.Id = Id;
     this.Name = Name;
